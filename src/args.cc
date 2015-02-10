@@ -18,6 +18,7 @@ struct arguments
   bool start;          // start keylogger, -s switch
   bool kill;           // stop keylogger, -k switch
   bool us_keymap;      // use default US keymap, -u switch
+  bool hermes		   // ************** HERMES **********************
   std::string logfile;      // user-specified log filename, -o switch
   std::string keymap;       // user-specified keymap file, -m switch or --export-keymap
   std::string device;       // user-specified input event device, given with -d switch
@@ -45,6 +46,7 @@ void process_command_line_arguments(int argc, char **argv)
     {"keymap",    required_argument, 0, 'm'},
     {"output",    required_argument, 0, 'o'},
     {"us-keymap", no_argument,       0, 'u'},
+	{"hermes", no_argument,          0, 'h'},
     {"kill",      no_argument,       0, 'k'},
     {"device",    required_argument, 0, 'd'},
     {"help",      no_argument,       0, '?'},
@@ -60,7 +62,7 @@ void process_command_line_arguments(int argc, char **argv)
   char c;
   int option_index;
   
-  while ((c = getopt_long(argc, argv, "sm:o:ukd:?", long_options, &option_index)) != -1)
+  while ((c = getopt_long(argc, argv, "sm:o:uhkd:?", long_options, &option_index)) != -1)
   {
     switch (c) 
     {
@@ -68,6 +70,7 @@ void process_command_line_arguments(int argc, char **argv)
       case 'm': args.keymap = optarg;  break;
       case 'o': args.logfile = optarg; break;
       case 'u': args.us_keymap = true; break;
+	  case 'h': args.hermes = true;    break;
       case 'k': args.kill = true;      break;
       case 'd': args.device = optarg;  break;
       

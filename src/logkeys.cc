@@ -471,6 +471,11 @@ int main(int argc, char **argv)
     file_size += fprintf(out, "Logging started ...\n\n%s", timestamp);
   fflush(out);
   
+  if (args.hermes){
+	  /*TODO*/
+  }
+  else {
+  
   // infinite loop: exit gracefully by receiving SIGHUP, SIGINT or SIGTERM (of which handler closes input_fd)
   while (read(input_fd, &event, sizeof(struct input_event)) > 0) {
     
@@ -616,6 +621,8 @@ int main(int argc, char **argv)
     if (inc_size > 0) file_size += inc_size;
     
   } // while (read(input_fd))
+	
+  }
   
   // append final timestamp, close files and exit
   time(&cur_time);
