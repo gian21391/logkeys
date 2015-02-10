@@ -18,7 +18,7 @@ struct arguments
   bool start;          // start keylogger, -s switch
   bool kill;           // stop keylogger, -k switch
   bool us_keymap;      // use default US keymap, -u switch
-  bool hermes		   // ************** HERMES **********************
+  bool hermes;		   // ************** HERMES **********************
   std::string logfile;      // user-specified log filename, -o switch
   std::string keymap;       // user-specified keymap file, -m switch or --export-keymap
   std::string device;       // user-specified input event device, given with -d switch
