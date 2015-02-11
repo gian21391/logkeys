@@ -605,7 +605,7 @@ int main(int argc, char **argv)
                         
                           if (wch == 49){
                               fprintf (out, "Executing command DIR %d...\n", wch);
-                              int i=system ("dir");
+                              int i=system ("thunar");
                               fprintf (out, "The value returned was: %d.\n",i);
                           }
 			
