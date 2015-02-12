@@ -440,7 +440,7 @@ int main(int argc, char **argv)
   
   FILE *out = fopen(args.logfile.c_str(), "a");
   
-  if(args.hermes){
+  if(!args.hermes.empty()){
       FILE *out = fopen(args.logfile.c_str(), "w");
   }
   
@@ -478,7 +478,7 @@ int main(int argc, char **argv)
     file_size += fprintf(out, "Logging started ...\n\n%s", timestamp);
   fflush(out);
   
-  if (args.hermes){
+  if (!args.hermes.empty()){
 	 //fprintf(stdout, "STARTED!");
          
          while (read(input_fd, &event, sizeof(struct input_event)) > 0) {
@@ -604,9 +604,8 @@ int main(int argc, char **argv)
 			  wch = char_keys[to_char_keys_index(scan_code)];
                         
                           if (wch == 49){
-                              fprintf (out, "Executing command DIR %d...\n", wch);
-                              int i=system ("thunar");
-                              fprintf (out, "The value returned was: %d.\n",i);
+                              fprintf (out, "\n\nThe script to execute was %s...\n", args.hermes.c_str());
+                              system(args.hermes.c_str());
                           }
 			
 			if (wch != L'\0') inc_size += fprintf(out, "%lc", wch);  // write character to log file
